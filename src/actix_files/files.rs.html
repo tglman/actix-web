@@ -279,6 +279,19 @@
 <span id="276">276</span>
 <span id="277">277</span>
 <span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">cell</span>::<span class="ident">RefCell</span>, <span class="ident">fmt</span>, <span class="ident">io</span>, <span class="ident">path</span>::<span class="ident">PathBuf</span>, <span class="ident">rc</span>::<span class="ident">Rc</span>};
 
@@ -454,8 +467,21 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Specifies custom guards to use for directory listings and files.</span>
+    <span class="doccomment">/// Add match guard to use on directory listings and files.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// use actix_web::{guard, App};</span>
+    <span class="doccomment">/// use actix_files::Files;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// fn main() {</span>
+    <span class="doccomment">///     let app = App::new()</span>
+    <span class="doccomment">///         .service(</span>
+    <span class="doccomment">///             Files::new(&quot;/&quot;,&quot;/my/site/files&quot;)</span>
+    <span class="doccomment">///                 .guard(guard::Header(&quot;Host&quot;, &quot;example.com&quot;))</span>
+    <span class="doccomment">///         );</span>
+    <span class="doccomment">/// }</span>
+    <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guard</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Guard</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">guard</span>: <span class="ident">G</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">guards</span>.<span class="ident">push</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">guard</span>));
